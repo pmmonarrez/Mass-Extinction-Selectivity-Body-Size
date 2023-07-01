@@ -1,1 +1,23 @@
+##########################################
+###                                    ###
+###  MONARREZ ET AL. R SCRIPT README   ### 
+###                                    ###
+##########################################
 
+### Note, R scripts should be run in order of number to reproduce results. 
+
+## Initial file needed: genera_range_through.txt
+
+## 01_PBDB_download.R – R code that downloads and creates files with occurrences from the Paleobiology Database (pbdbAnimals.Rdata and pbdb.data.csv). 
+
+## 02_Data_prep.R – Requires files genera_range_through.txt and pbdbAnimals.Rdata. R code that cleans occurrences downloaded from the Paleobiology Databases and assigns body size data to occurrence data (creates files pbdb.cleaned.classes.csv and genus.sizes.ranges.cleaned.classes.csv). 
+
+## 03_Encounter_history_assignment.R - Requires files pbdb.cleaned.classes.csv and genus.sizes.ranges.cleaned.classes.csv. R code that creates the encounter history for each genus using the occurrences from the Paleobiology Database. This script also assigns mass extinction and mass extinction recovery covariables to table of genera encounter history. Creates R data file to be used for CMR analysis (Logvol_encounter_history_Big5.Rdata).  
+
+## 04_CMR_model_analysis - Requires file Logvol_encounter_history_Big5.Rdata. R code that runs capture-mark-recapture using the R package, RMark. This script also produces model selection table and table of model coefficients. Note, that the program Mark needs to be installed before being able to run models using RMark. This script takes the longest to run, will take at least 96 hours. 
+
+## 05_Interaction_coefficients.R - Requires CMR_coeffs_bodysize.txt file with coefficients as well as the output R data files from the CMR analysis. R code will take the difference of the interacting variable coefficient estimates and standard errors from the individual variables to extract the final coefficients and standard errors. 
+
+## 06_Figure2_plot.R - Requires CMR_coeffs_bodysize_final.txt file with coefficients. R code to create CMR coefficients from models with that garner the greatest support (Figure 2 in main text). 
+
+## R code for supplementary materials is titled starting with the letter S. These files include data preparation and CMR analysis using different definitions of mass extinctions. These files also includes code for all figures in the supplementary materials, which include data coverage and sampling coefficients for analysis in the main text. Steps to reproduce supplementary CMR analyses follow the same protocol as the code for the analysis in the main text.
